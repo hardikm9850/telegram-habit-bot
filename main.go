@@ -21,6 +21,7 @@ var habitFile = "habits.json"
 func main() {
 	botToken := os.Getenv("TELEGRAM_BOT_TOKEN")
 	chatIDString := os.Getenv("TELEGRAM_CHAT_ID")
+	log.Println("Retrieving env keys")
 
 	if botToken == "" || chatIDString == "" {
 		log.Fatal("Missing required environment variables")
