@@ -8,7 +8,6 @@ import (
 	"time"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
-	"github.com/joho/godotenv"
 )
 
 // Habit struct to store user responses
@@ -20,14 +19,12 @@ type Habit struct {
 var habitFile = "habits.json"
 
 func main() {
-	// Load environment variables
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-
 	botToken := os.Getenv("TELEGRAM_BOT_TOKEN")
 	chatIDString := os.Getenv("TELEGRAM_CHAT_ID")
+
+	if botToken == "" || chatIDString == "" {
+		log.Fatal("Missing required environment variables")
+	}
 	chatID, err := strconv.ParseInt(chatIDString, 10, 64)
 	if err != nil {
 		log.Fatal(err)
